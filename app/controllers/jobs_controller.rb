@@ -6,10 +6,7 @@ before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destro
 
   def show
     @job = Job.find(params[:id])
-    if @job.is_hidden
-      flash[warning:] = "这个工作已经被隐藏"
-      redirect_to root_path
-    end
+    
   end
 
   def new
@@ -18,11 +15,12 @@ before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destro
 
   def create
     @job = Job.new(job_params)
-    if @job.save
-      return redirect_to jobs_path
-    end
 
-    render 'new'
+    if @job.save
+     redirect_to jobs_path
+    else
+     render 'new'
+    end
   end
 
   def edit
