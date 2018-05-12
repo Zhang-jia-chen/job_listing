@@ -1,11 +1,16 @@
 class JobsController < ApplicationController
 before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+layout "admin"
   def index
-    @jobs = Job.where(is_hidden: false).order("created_at DESC" )
+    @jobs = Job.all
   end
 
   def show
     @job = Job.find(params[:id])
+    if @job.is_hidden
+      flash[warning:] = "这个工作已经被隐藏"
+      redirect_to root_path
+    end
   end
 
   def new
