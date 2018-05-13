@@ -1,0 +1,13 @@
+<table class="table table-bordered">
+    <tr>
+      <td>
+        <span>职位：<span><%= @job.title%>
+    </tr>
+    <tr>
+      <td><span>职位要求<span>
+        <p>
+          <%= simple_format(@job.description)%>
+        </p>
+      </td>
+    </tr>
+</table>
