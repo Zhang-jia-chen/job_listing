@@ -1,4 +1,7 @@
 
+<div class="pull-right">
+  <%= link_to("Add a job", new_admin_job_path, :class => "btn btn-default" ) %>
+</div>
 <table class="table table-boldered">
     <thead>
         <tr>
@@ -48,8 +51,11 @@
                 <% end %>
             </td>
             <td>
-                <%= job.created_at %>
+                <%= job.created_at.strftime('%Y-%m-%d') %>
             </td>
         </tr>
         <% end %>
     </table>
+    <div class="text-center">
+    <%= will_paginate @posts %>
+    </div>
